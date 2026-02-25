@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="677.0" prefWidth="845.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.justsid.mcservergui.Controller">
+    
+    <!-- Konsolenbereich -->
+    <VBox layoutX="10" layoutY="10" prefWidth="500" spacing="10">
+        <Label text="Console Output" />
+        <TextArea fx:id="consoleOutput" editable="false" prefHeight="400.0" prefWidth="500.0" wrapText="true" />
+        <HBox spacing="5">
+            <TextField fx:id="commandInput" prefHeight="25.0" prefWidth="414.0" promptText="Enter console command..." HBox.hgrow="ALWAYS" />
+            <Button onAction="#onCommandSend" prefHeight="25.0" prefWidth="48.0" text="Go" />
+        </HBox>
+    </VBox>
+
+    <!-- Server State -->
+    <VBox layoutX="520" layoutY="20" spacing="10">
+        <HBox spacing="5" />
+    </VBox>
+
+    <!-- Zweite Trennlinie -->
+    <Separator layoutX="508.0" layoutY="38.0" prefHeight="3.0" prefWidth="286.0" />
+
+    <!-- Buttons-Bereich -->
+    <GridPane hgap="20" layoutX="526.0" layoutY="49.0" vgap="10">
+        <Button fx:id="startButton" onAction="#onStartButtonClick" text="Start" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+        <Button fx:id="stopButton" onAction="#onStopButtonClick" text="Stop" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+        
+        <Button fx:id="restartButton" onAction="#onRestartButtonClick" text="Restart" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+    <Button fx:id="saveButton" onAction="#onSaveButtonClick" text="Save" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        
+      <Button fx:id="optionsButton" onAction="#onOptionsClick" text="Options" GridPane.rowIndex="5" />
+        <Button fx:id="serverPropertiesButton" onAction="#onServerPropertiesClick" text="Server Properties" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <Button fx:id="reloadGUIButton" onAction="#onReloadClick" text="Placeholder" GridPane.rowIndex="3" />
+        
+        <Button fx:id="viewLogsButton" onAction="#onViewLogsClick" text="View Logs" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+        <Button fx:id="viewSavesButton" onAction="#onViewSavesClick" text="View Saves" GridPane.rowIndex="4" />
+        
+           <Button fx:id="commandsButton" onAction="#onScheduledCommandsClick" text="Commands" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+        
+           <Button fx:id="reloadWhitelistButton" onAction="#onReloadWhitelistClick" text="Reload Whitelist" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+        <Button fx:id="openFolderButton" onAction="#onOpenFolderClick" text="Open Folder" GridPane.rowIndex="2" />
+      <columnConstraints>
+         <ColumnConstraints />
+         <ColumnConstraints />
+      </columnConstraints>
+      <rowConstraints>
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+      </rowConstraints>
+    </GridPane>
+
+    <!-- Dritte Trennlinie -->
+    <Separator layoutX="511.0" layoutY="321.0" prefHeight="3.0" prefWidth="286.0" />
+
+    <!-- Checkboxen -->
+    <VBox layoutX="520" layoutY="240" spacing="10" />
+
+    <!-- Vierte Trennlinie -->
+    <Separator layoutX="508.0" layoutY="396.0" prefHeight="3.0" prefWidth="286.0" />
+
+<!-- Dynamische Labels für Statusanzeigen -->
+<Label layoutX="520.0" layoutY="420.0" text="Auto Save:" />
+<Label fx:id="lastSaveLabel" layoutX="540.0" layoutY="440.0" text="Last Save: - " />
+<Label fx:id="nextSaveLabel" layoutX="540.0" layoutY="460.0" text="Next Save: - " />
+
+<Label layoutX="520.0" layoutY="500.0" text="Auto Restart:" />
+<Label fx:id="lastRestartLabel" layoutX="540.0" layoutY="520.0" text="Last Restart: - " />
+<Label fx:id="nextRestartLabel" layoutX="540.0" layoutY="540.0" text="Next Restart: - " />
+        
+        <Label fx:id="membersOnlineLabel" layoutX="672.0" layoutY="635.0" text="Members Online: 0" />
+
+
+    <!-- Footer -->
+    <Label layoutX="26.0" layoutY="654.0" text="Copyright © 2024, Just.Sid" />
+     <CheckBox fx:id="autoSaveCheckbox" layoutX="526.0" layoutY="368.0" text="AutoSave" />
+     <CheckBox fx:id="rollbackCheckbox" layoutX="655.0" layoutY="340.0" text="Rollback" />
+     <CheckBox fx:id="keepAliveCheckbox" layoutX="526.0" layoutY="340.0" text="Keep Alive Server" />
+     <CheckBox fx:id="autoRestartCheckbox" accessibleRole="BUTTON" layoutX="652.0" layoutY="368.0" text="Auto_Restart" />
+     <Label layoutX="592.0" layoutY="12.0" text="Server State:" />
+     <Label fx:id="serverStateLabel" layoutX="690.0" layoutY="12.0" text="OFFLINE" />
+</AnchorPane>

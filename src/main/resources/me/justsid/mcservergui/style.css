@@ -1,0 +1,152 @@
+/* Allgemeiner Hintergrund */
+.root {
+    -fx-background-color: #f5f5f5; /* Helles Grau */
+    -fx-font-family: "Segoe UI", sans-serif;
+}
+
+/* Allgemeine Textfelder */
+.text-field {
+    -fx-background-color: white;
+    -fx-border-color: #cccccc; /* Helles Grau */
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+    -fx-padding: 5px;
+    -fx-prompt-text-fill: #999999; /* Dezenter Text für Prompt */
+}
+
+/* Hover-Effekt für Textfelder */
+.text-field:hover {
+    -fx-border-color: #666666; /* Dunkleres Grau */
+}
+
+/* Fokus-Effekt für Textfelder */
+.text-field:focused {
+    -fx-border-color: #0078d7; /* Elegantes Blau */
+    -fx-border-width: 2px;
+}
+
+/* Buttons */
+.button {
+    -fx-background-color: #0078d7; /* Elegantes Blau */
+    -fx-text-fill: white;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-padding: 8px 15px;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand; /* Zeigt die Hand an beim Hover */
+}
+
+/* Hover-Effekt für Buttons */
+.button:hover {
+    -fx-background-color: #FF8C00; /* Dunkleres Blau */
+}
+
+/* Dialoge und Pane-Hintergrund */
+.dialog-pane {
+    -fx-background-color: white;
+    -fx-border-color: #dddddd;
+    -fx-border-radius: 10px;
+    -fx-border-width: 1px;
+}
+
+/* Konsolenausgabe */
+.text-area {
+    -fx-background-color: #e8e8e8; /* Leichtes Grau für Konsole */
+    -fx-border-color: #cccccc;
+    -fx-border-radius: 5px;
+    -fx-padding: 5px;
+    -fx-font-family: "Consolas", monospace;
+    -fx-font-size: 12px;
+}
+
+/* Prominentere Überschriften */
+.label {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333; /* Dunkles Grau */
+}
+
+/* Scrollbar-Stil */
+.scroll-bar {
+    -fx-padding: 5px;
+}
+
+.scroll-bar:vertical .thumb {
+    -fx-background-color: #cccccc;
+    -fx-background-insets: 0;
+    -fx-background-radius: 5px;
+}
+
+.scroll-bar:horizontal .thumb {
+    -fx-background-color: #cccccc;
+    -fx-background-insets: 0;
+    -fx-background-radius: 5px;
+}
+
+/* Tooltip Styling */
+.tooltip {
+    -fx-background-color: #0078d7;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-padding: 5px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+/* Server State Labels */
+.server-state-label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.server-state-online {
+    -fx-text-fill: #4CAF50; /* Grün */
+}
+
+.server-state-offline {
+    -fx-text-fill: #9E9E9E; /* Grau */
+}
+
+.server-state-starting {
+    -fx-text-fill: #FF9800; /* Orange */
+}
+
+.server-state-error {
+    -fx-text-fill: #F44336; /* Rot */
+}
+
+/* Status Labels */
+.status-label {
+    -fx-font-size: 12px;
+    -fx-text-fill: #757575;
+}
+
+.status-label-highlight {
+    -fx-font-weight: bold;
+    -fx-text-fill: #2196F3;
+}
+
+/* CheckBox Styling */
+.check-box .box {
+    -fx-background-color: #f0f0f0;
+    -fx-border-color: #b0b0b0;
+}
+
+.check-box:selected .box {
+    -fx-background-color: #2196F3;
+    -fx-border-color: #1976D2;
+}
+
+/* Button States */
+.button:hover {
+    -fx-cursor: hand;
+}
+
+.button:pressed {
+    -fx-background-color: derive(-fx-base, -20%);
+}
+
+.button:disabled {
+    -fx-opacity: 0.5;
+}

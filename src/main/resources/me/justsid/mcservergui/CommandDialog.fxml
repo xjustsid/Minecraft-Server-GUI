@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="me.justsid.mcservergui.CommandDialogController" prefHeight="500.0" prefWidth="700.0">
+    <VBox spacing="10" alignment="TOP_CENTER" AnchorPane.topAnchor="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+        <Label text="Geplante Befehle" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+        
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <Label text="Befehl:" />
+            <TextField fx:id="commandField" promptText="z.B. say Willkommen auf dem Server!" HBox.hgrow="ALWAYS" />
+        </HBox>
+        
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <Label text="Auslöser:" />
+            <ComboBox fx:id="triggerTypeComboBox" onAction="#onTriggerTypeChanged" />
+            <Label fx:id="conditionLabel" text="Spieleranzahl:" />
+            <TextField fx:id="conditionField" prefWidth="80" />
+            <TextField fx:id="timeField" prefWidth="80" visible="false" promptText="HH:mm" />
+        </HBox>
+        
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <CheckBox fx:id="repeatCheckbox" text="Wiederholen" />
+        </HBox>
+        
+        <HBox spacing="10" alignment="CENTER">
+            <Button text="Hinzufügen" onAction="#onAddClick" />
+            <Button text="Aktualisieren" onAction="#onUpdateClick" />
+            <Button text="Löschen" onAction="#onDeleteClick" />
+        </HBox>
+        
+        <Label text="Befehlsliste:" />
+        <ListView fx:id="commandListView" VBox.vgrow="ALWAYS" />
+        
+        <HBox spacing="10" alignment="CENTER_RIGHT">
+            <Button text="Schließen" onAction="#onCloseClick" />
+        </HBox>
+    </VBox>
+</AnchorPane>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="me.justsid.mcservergui.FirstConfigController">
+    <children>
+        <VBox alignment="CENTER" prefHeight="300" prefWidth="400" spacing="10">
+            <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Erstkonfiguration" />
+            <Label text="Bitte geben Sie die folgenden Einstellungen ein:" />
+            
+            <Pane fx:id="focusPane" visible="false" focusTraversable="true" />
+            <Label text="Server JAR *" />
+            <TextField fx:id="serverJarField" promptText="Pfad zur Server JAR (z.B. server.jar)" />
+            <Label text="Java-Pfad *" />
+            <TextField fx:id="javaPathField" promptText="Pfad zur Java-Executable" />
+            <Label text="Min RAM *" />
+            <TextField fx:id="minMemoryField" promptText="Minimaler RAM (z.B. 1024M)" />
+            <Label text="Max RAM *" />
+            <TextField fx:id="maxMemoryField" promptText="Maximaler RAM (z.B. 2048M)" />
+            <Label text="Backup-Ordner" />
+			<TextField fx:id="backupFolderField" promptText="Backup-Ordner (Standard: ./backups)" />
+            
+            <HBox alignment="CENTER" prefHeight="24.0" prefWidth="400.0" spacing="10">
+                <Button onAction="#saveConfig" text="Speichern" />
+                <Button onAction="#cancelConfig" text="Abbrechen" />
+            </HBox>
+        </VBox>
+    </children>
+</AnchorPane>

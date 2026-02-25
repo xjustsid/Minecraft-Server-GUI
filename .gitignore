@@ -1,0 +1,63 @@
+### Minecraft Server ###
+server.jar
+world/
+world_nether/
+world_the_end/
+logs/
+cache/
+crash-reports/
+backup/
+libraries/
+versions/
+targetportable/
+
+# Server data
+ops.json
+whitelist.json
+banned-ips.json
+banned-players.json
+usercache.json
+server.properties
+eula.txt
+config.txt
+scheduled_commands.json
+
+### Maven ###
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### IntelliJ IDEA ###
+.idea/modules.xml
+.idea/jarRepositories.xml
+.idea/compiler.xml
+.idea/libraries/
+*.iws
+*.iml
+*.ipr
+
+### Eclipse ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+
+### Mac OS ###
+.DS_Store

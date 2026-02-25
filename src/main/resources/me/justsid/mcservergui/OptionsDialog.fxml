@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="me.justsid.mcservergui.OptionsDialogController" prefHeight="400.0" prefWidth="600.0">
+    <VBox spacing="10" alignment="TOP_CENTER" layoutX="20.0" layoutY="20.0" AnchorPane.topAnchor="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+        <Label text="Optionen" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+        <GridPane hgap="10" vgap="10">
+            <Label text="Java Path:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+            <TextField fx:id="javaPathField" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+            <Label text="Server Jar:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+            <TextField fx:id="serverJarField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+            <Label text="Min Memory:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+            <TextField fx:id="minMemoryField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+            <Label text="Max Memory:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+            <TextField fx:id="maxMemoryField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+            <Label text="Backup Folder:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+            <TextField fx:id="backupFolderField" promptText="Backup-Ordner, Standard: ./backups" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+
+            <Label text="Restart Times:" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+            <TextField fx:id="restartTimesField" promptText="Zeiten für Neustarts, z.B. 00:00,06:00" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+
+            <Label text="Backup Modus:" GridPane.columnIndex="0" GridPane.rowIndex="6" />
+            <ComboBox fx:id="backupModeComboBox" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+
+            <CheckBox fx:id="autoSaveCheckbox" text="Auto Save" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <CheckBox fx:id="autoRestartCheckbox" text="Auto Restart" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            <CheckBox fx:id="keepAliveCheckbox" text="Keep Alive Server" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+            <CheckBox fx:id="rollbackCheckbox" text="Rollback" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+        </GridPane>
+
+        <HBox spacing="10" alignment="CENTER">
+            <Button text="Speichern" onAction="#onSaveClick" />
+            <Button text="Abbrechen" onAction="#onCancelClick" />
+        </HBox>
+    </VBox>
+</AnchorPane>
