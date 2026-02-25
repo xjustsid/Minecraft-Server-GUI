@@ -14,8 +14,6 @@ import org.slf4j.LoggerFactory;
  * Abstrakte Basisklasse für zeitbasierte Aktionen wie Auto-Save und Auto-Restart.
  * Verwaltet den Timer und die Zeitplanung.
  * 
- * @author McServerGUI
- * @version 1.0
  */
 public abstract class AbstractScheduledManager {
 

@@ -4,8 +4,6 @@ package me.justsid.mcservergui;
  * Zentrale Konstanten-Klasse für die Anwendung.
  * Enthält alle Magic Numbers und wiederverwendbare Werte.
  * 
- * @author McServerGUI
- * @version 1.0
  */
 public class Constants {
     

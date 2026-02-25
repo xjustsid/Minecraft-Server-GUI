@@ -11,8 +11,6 @@ import java.util.concurrent.atomic.AtomicReference;
  * Koordiniert alle Server-Operationen und verhindert gleichzeitige Aktionen.
  * Stellt sicher, dass nur eine Operation zur Zeit ausgeführt wird.
  * 
- * @author McServerGUI
- * @version 1.0
  */
 public class ServerOperationCoordinator {
     private static final Logger logger = LoggerFactory.getLogger(ServerOperationCoordinator.class);

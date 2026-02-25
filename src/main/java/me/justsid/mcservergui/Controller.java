@@ -27,8 +27,6 @@ import java.util.TimerTask;
  * Haupt-Controller für die McServerGUI Anwendung.
  * Verwaltet die UI-Interaktionen und koordiniert Server-Operationen.
  * 
- * @author McServerGUI
- * @version 1.0
  */
 public class Controller implements ServerOperationCoordinator.ServerStateListener {
     private static final Logger logger = LoggerFactory.getLogger(Controller.class);

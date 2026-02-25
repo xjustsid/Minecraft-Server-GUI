@@ -17,8 +17,6 @@ import java.util.Objects;
  * Hauptklasse der McServerGUI Anwendung.
  * Startet die JavaFX-Anwendung und verwaltet das Hauptfenster.
  * 
- * @author McServerGUI
- * @version 1.0
  */
 public class Main extends Application {
     

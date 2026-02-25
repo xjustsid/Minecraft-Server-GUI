@@ -3,8 +3,6 @@ package me.justsid.mcservergui;
 /**
  * Enum für die verschiedenen Zustände des Minecraft-Servers.
  * 
- * @author McServerGUI
- * @version 1.0
  */
 public enum ServerState {
     /** Server ist gestoppt. */

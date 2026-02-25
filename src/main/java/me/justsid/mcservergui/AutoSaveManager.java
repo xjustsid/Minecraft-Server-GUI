@@ -6,8 +6,6 @@ import java.time.LocalDateTime;
  * Verwaltet automatische Backups des Minecraft-Servers.
  * Erbt Timer-Logik von AbstractScheduledManager.
  * 
- * @author McServerGUI
- * @version 1.0
  */
 public class AutoSaveManager extends AbstractScheduledManager {
 

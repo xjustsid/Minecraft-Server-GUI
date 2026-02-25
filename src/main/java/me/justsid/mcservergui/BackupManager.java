@@ -19,8 +19,6 @@ import java.util.Arrays;
  * Verwaltet Backups des Minecraft-Servers.
  * Erstellt komprimierte ZIP-Backups des World-Ordners.
  * 
- * @author McServerGUI
- * @version 1.0
  */
 public class BackupManager {
 

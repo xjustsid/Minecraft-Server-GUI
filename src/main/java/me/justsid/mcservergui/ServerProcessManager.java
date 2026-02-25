@@ -22,8 +22,6 @@ import java.util.function.Consumer;
  * Verwaltet den Minecraft-Server-Prozess.
  * Startet, stoppt und überwacht den Server.
  * 
- * @author McServerGUI
- * @version 1.0
  */
 public class ServerProcessManager {
     private static final Logger logger = LoggerFactory.getLogger(ServerProcessManager.class);

@@ -6,8 +6,6 @@ import java.time.LocalDateTime;
  * Verwaltet automatische Neustarts des Minecraft-Servers.
  * Erbt Timer-Logik von AbstractScheduledManager.
  * 
- * @author McServerGUI
- * @version 1.0
  */
 public class AutoRestartManager extends AbstractScheduledManager {
 
