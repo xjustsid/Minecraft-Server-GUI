@@ -1,164 +1,275 @@
+# Minecraft Server GUI
 
-## Minecraft Server GUI
+**Minecraft Server GUI** ist eine Windows-basierte JavaFX-Desktop-Anwendung zur Verwaltung von Minecraft Java Edition Servern über eine grafische Oberfläche.
 
-Eine Windows-basierte Desktop-Anwendung zur Verwaltung eines Minecraft-Servers über eine grafische Oberfläche.
+Das Projekt richtet sich an Nutzer, die einen Minecraft-Server lokal auf einem Windows-Rechner betreiben möchten – beispielsweise auf einem alten PC oder Laptop – ohne auf kostenpflichtige Webpanel-Hostinglösungen angewiesen zu sein.
 
-Das Ziel ist es, eine lokale Alternative zu Webpanels bereitzustellen — insbesondere für Nutzer, die einen Server auf einem eigenen Windows-Rechner betreiben möchten.
+---
+
+## Plattform
+
+* Betriebssystem: **Windows (Windows-spezifische Implementierung)**
+* Technologie: Java / JavaFX
+* Architektur: Desktop-Anwendung
+* Kompatibilität: Jede Minecraft `server.jar` (Vanilla, Paper, Spigot etc.)
+
+Die Anwendung ist derzeit **nicht plattformunabhängig**, da Teile hart auf Windows implementiert sind.
 
 ---
 
 ## Zielgruppe
 
-* Nutzer mit eigenem Windows-PC oder altem Laptop als Server
-* Kleine private Server mit Freunden
-* Anwender ohne Bedarf an kostenpflichtigem Hosting
+Die Anwendung richtet sich an:
+
+* Nutzer, die einen Minecraft-Server lokal auf einem Windows-Rechner betreiben möchten
+* Besitzer älterer PCs oder Laptops, die als Server verwendet werden sollen
+* Kleine private Freundesgruppen
+* Anwender, die kein kostenpflichtiges Webpanel nutzen möchten
+* Nutzer, die eine grafische Oberfläche gegenüber reiner Konsolenbedienung bevorzugen
 
 ---
 
-## Funktionen
+## Hauptfunktionen
 
-### Server-Verwaltung
+## 1. Server-Steuerung
 
-* Start / Stop / Restart
-* Manuelles Speichern
-* Live-Konsolenanzeige
-* Eigene Kommandoeingabe
-* Serverstatus & Spieleranzeige
+* Start
+* Stop
+* Restart
+* Manuelles Backup („Save“)
+* Server-Statusanzeige (OFFLINE, STARTING, ONLINE, STOPPING, BACKUP, RESTARTING, ERROR)
+* Echtzeit-Spieleranzeige
+* Anzeige letzter / nächster Auto-Save
+* Anzeige letzter / nächster Auto-Restart
 
-### Backup-System
+---
 
-* Manuell oder geplant
-* Einmalig oder wiederkehrend
-* Konfigurierbarer Speicherort
-* Rollback-Funktion
+## 2. Echtzeit-Konsole
 
-### Automatisierung
+* Live-Konsolenausgabe (Read-Only)
+* Eingabefeld für Server-Befehle
+* Direkte Kommandoausführung (Button oder ENTER)
 
-* Geplante Restarts
-* Keep-Alive
-* Auto-Restart
-* Zeit- oder spielerbasierte Commands
+---
 
-### Direkter Zugriff
+## 3. Backup-System
 
-* Server-Logs anzeigen
-* `server.properties` öffnen
-* Whitelist neu laden
+* Manuelle Backups
+* Geplante Backups (einmalig oder wiederkehrend)
+* Backup als ZIP-Datei
+* Konfigurierbarer Backup-Ordner
+* Rollback-Funktion bei Weltkorruption
+
+---
+
+## 4. Automatisierte Neustarts
+
+* Bis zu 4 definierbare Neustart-Zeiten pro Tag
+* Auto-Restart aktivierbar
+* Keep-Alive-System (Überprüfung alle 5 Sekunden bei Absturz)
+
+---
+
+## 5. Geplante Befehle (Command Automation)
+
+Server-Befehle können automatisch ausgelöst werden durch:
+
+1. Keine Spieler online
+2. Weniger als X Spieler
+3. Mehr als X Spieler
+4. Zu einer bestimmten Uhrzeit
+5. Alle X Minuten
+
+Optional wiederholbar oder einmalig.
+
+---
+
+## 6. Datei- und Direktzugriffe
+
+* Projektordner öffnen
 * Backup-Ordner öffnen
+* Logs-Ordner öffnen
+* `server.properties` direkt öffnen
+* Whitelist-Reload
+
+
+---
+
+## Erstkonfiguration
+
+Beim ersten Start erscheint ein Setup-Dialog:
+
+* Server-JAR-Pfad
+* Java-Pfad
+* Minimaler RAM
+* Maximaler RAM
+* Backup-Ordner
 
 ---
 
 ## Installation
 
 1. ZIP-Datei entpacken
-2. Inhalte in den Ordner mit der `server.jar` kopieren
+2. `MC-Server-GUI.exe`, `runtime/` und `app/` in den Server-Ordner kopieren
 3. `MC-Server-GUI.exe` starten
 
-Die benötigte Runtime ist enthalten.
+Eine separate Java-Installation ist nicht erforderlich (Runtime enthalten).
 
 ---
 
-## Kompatibilität
+## Status
 
-Kompatibel mit jeder Minecraft-`server.jar` (Vanilla, Paper, Spigot etc.).
+Version: 0.1.0 (Pre-Release)
 
-Die Anwendung ist derzeit ausschließlich für Windows ausgelegt.
-Mehrere Komponenten sind Windows-spezifisch implementiert.
-
-Eine plattformunabhängige Version ist perspektivisch denkbar, aber aktuell nicht geplant.
+Das Projekt befindet sich in aktiver Entwicklung.
+Monitoring-Features und weitere Erweiterungen sind geplant.
 
 ---
 
 ## Lizenz
 
-Noch keine Lizenz festgelegt.
-Der Quellcode ist öffentlich einsehbar.
+Der Quellcode ist öffentlich verfügbar.
+Eine Lizenz ist derzeit noch nicht festgelegt.
 
 ---
 
-## Mitwirken
+## Mitwirkung
 
-Pull Requests, Feature-Ideen und Feedback sind willkommen.
-
----
+Pull Requests, Verbesserungsvorschläge und Feature-Ideen sind willkommen.
 
 ---
 
 
 
-## Minecraft Server GUI
 
-A Windows-based desktop application for managing a Minecraft server via a graphical interface.
+# Minecraft Server GUI
 
-The goal of this project is to provide a local alternative to web-based server panels, especially for users running a Minecraft server on their own Windows machine.
+**Minecraft Server GUI** is a Windows-based JavaFX desktop application for managing Minecraft Java Edition servers through a graphical interface.
+
+It is designed for users who host a Minecraft server locally on a Windows machine — for example on an old PC or laptop — without relying on paid web hosting panels.
+
+---
+
+## Platform
+
+* Operating System: **Windows (Windows-specific implementation)**
+* Technology: Java / JavaFX
+* Type: Desktop application
+* Compatible with any Minecraft `server.jar` (Vanilla, Paper, Spigot, etc.)
+
+The application is currently **not cross-platform**, as several components are implemented using Windows-specific logic.
 
 ---
 
 ## Target Audience
 
-* Users hosting a server on a private Windows PC
-* Small friend groups
-* Users who prefer not to rent external hosting
+This application is intended for:
+
+* Users hosting a Minecraft server locally on a Windows machine
+* Individuals using older PCs or laptops as dedicated servers
+* Small private friend groups
+* Users who prefer not to rent paid web hosting panels
+* Users who want a graphical interface instead of pure console management
 
 ---
 
-## Features
+## Core Features
 
-### Server Management
+### 1. Server Control
 
-* Start / Stop / Restart
-* Manual save
-* Live console output
-* Command input
-* Server status and player count display
+* Start
+* Stop
+* Restart
+* Manual backup (“Save”)
+* Server state display (OFFLINE, STARTING, ONLINE, STOPPING, BACKUP, RESTARTING, ERROR)
+* Real-time player count
+* Last / next auto-save display
+* Last / next auto-restart display
 
-### Backup System
+---
+
+### 2. Real-Time Console
+
+* Live server output (read-only)
+* Command input field
+* Instant command execution (button or ENTER)
+
+---
+
+### 3. Backup System
 
 * Manual backups
 * Scheduled backups (one-time or recurring)
+* ZIP-based backup creation
 * Configurable backup directory
-* Rollback functionality
+* Rollback functionality in case of world corruption
 
-### Automation
+---
 
-* Scheduled restarts
-* Auto-restart
-* Keep-alive system
-* Time-based or player-based command execution
+### 4. Automated Restarts
 
-### Direct Access Tools
+* Up to 4 restart times per day
+* Optional auto-restart
+* Keep-alive crash detection (checked every 5 seconds)
 
-* View server logs
+---
+
+### 5. Scheduled Commands
+
+Server commands can be triggered automatically by:
+
+1. No players online
+2. Less than X players
+3. More than X players
+4. At a specific time
+5. Every X minutes
+
+Commands can be one-time or recurring.
+
+---
+
+### 6. Direct File Access
+
+* Open project folder
+* Open backup folder
+* Open logs folder
 * Open `server.properties`
 * Reload whitelist
-* Open backup directory
+
+---
+
+## First-Time Setup
+
+On first launch, a configuration dialog appears:
+
+* Server JAR path
+* Java path
+* Minimum RAM
+* Maximum RAM
+* Backup folder
 
 ---
 
 ## Installation
 
 1. Extract the ZIP file
-2. Place all contents into the folder containing your `server.jar`
+2. Copy all contents into the folder containing your `server.jar`
 3. Launch `MC-Server-GUI.exe`
 
 No separate Java installation required (runtime included).
 
 ---
 
-## Compatibility
+## Status
 
-Compatible with any Minecraft `server.jar` (Vanilla, Paper, Spigot, etc.).
+Version: 0.1.0 (Pre-release)
 
-The application is currently Windows-only.
-
-Several components are implemented using Windows-specific logic.
-Running it on macOS or Linux is not supported at this stage.
+The project is under active development.
+Monitoring features and further enhancements are planned.
 
 ---
 
 ## License
 
-No license specified yet.
-The source code is publicly available.
-
----
+Source code is publicly available.
+No license has been defined yet.
