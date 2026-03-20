@@ -14,10 +14,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Set up JDK 21
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: '21'
@@ -29,7 +29,7 @@ jobs:
           ./mvnw -B clean package
 
       - name: Upload JAR artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: mcservergui-jar
           path: target/McServerGUI.jar
@@ -57,10 +57,10 @@ jobs:
             javafx_platform: linux
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Set up JDK 21
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: '21'
@@ -87,10 +87,10 @@ jobs:
         run: ${{ matrix.script }}
 
       - name: Upload native artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: native-${{ matrix.os }}
-          path: ${{ matrix.artifact_glob }}
+          path: "${{ matrix.artifact_glob }}"
           if-no-files-found: warn
 
   release:
@@ -98,11 +98,11 @@ jobs:
     needs:
       - build-jar
       - package-native
-    if: always() && needs.build-jar.result == 'success'
+    if: always() && needs.build-jar.result == 'success' && needs.package-native.result != 'failure'
     runs-on: ubuntu-latest
     steps:
       - name: Download all artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           path: release-assets
 
@@ -116,7 +116,7 @@ jobs:
       - name: Create release
         uses: softprops/action-gh-release@v2
         with:
-          files: upload/*
+          files: "upload/*"
           draft: false
           prerelease: ${{ startsWith(github.ref_name, 'v0.') }}
         env:
