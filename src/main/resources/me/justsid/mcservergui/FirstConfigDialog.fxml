@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="me.justsid.mcservergui.FirstTimeSetupWizardController" prefHeight="640.0" prefWidth="760.0"
+            style="-fx-background-color: linear-gradient(to bottom, #f7fafc, #eef2f7);">
+    <children>
+        <VBox alignment="TOP_CENTER" spacing="12.0" AnchorPane.topAnchor="20.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0"
+              style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-color: #d8dee9; -fx-border-radius: 10;">
+            <padding>
+                <Insets top="18.0" right="18.0" bottom="18.0" left="18.0" />
+            </padding>
+
+            <Label style="-fx-font-size: 22px; -fx-font-weight: bold;" text="Erstkonfiguration" />
+            <Label style="-fx-text-fill: #4a5568;" text="Bitte geben Sie die Basis-Einstellungen für den Server ein" />
+
+            <Pane fx:id="focusPane" visible="false" focusTraversable="true" />
+
+            <VBox alignment="CENTER_LEFT" spacing="6.0" prefWidth="700.0">
+                <Label text="Server JAR *" />
+                <TextField fx:id="serverJarField" text="server.jar" promptText="Pfad zur Server JAR (z.B. server.jar)" prefWidth="700.0" />
+            </VBox>
+
+            <VBox alignment="CENTER_LEFT" spacing="6.0" prefWidth="700.0">
+                <Label text="Java-Pfad *" />
+                <TextField fx:id="javaPathField" text="java" promptText="Pfad zur Java-Executable" prefWidth="700.0" />
+            </VBox>
+
+            <HBox spacing="14.0" prefWidth="700.0">
+                <VBox alignment="CENTER_LEFT" spacing="6.0" HBox.hgrow="ALWAYS">
+                    <Label text="Min RAM *" />
+                    <TextField fx:id="minMemoryField" text="2G" promptText="Minimaler RAM (z.B. 1024M)" prefWidth="340.0" />
+                </VBox>
+                <VBox alignment="CENTER_LEFT" spacing="6.0" HBox.hgrow="ALWAYS">
+                    <Label text="Max RAM *" />
+                    <TextField fx:id="maxMemoryField" text="4G" promptText="Maximaler RAM (z.B. 2048M)" prefWidth="340.0" />
+                </VBox>
+            </HBox>
+
+            <VBox alignment="CENTER_LEFT" spacing="6.0" prefWidth="700.0">
+                <Label text="Backup-Ordner" />
+                <TextField fx:id="backupFolderField" text="./backups" promptText="Backup-Ordner (Standard: ./backups)" prefWidth="700.0" />
+            </VBox>
+
+            <HBox alignment="CENTER_RIGHT" prefWidth="700.0" spacing="10">
+                <Button onAction="#cancelConfig" text="Abbrechen" prefWidth="120.0" />
+                <Button onAction="#saveConfig" text="Speichern" prefWidth="120.0" />
+            </HBox>
+        </VBox>
+    </children>
+</AnchorPane>

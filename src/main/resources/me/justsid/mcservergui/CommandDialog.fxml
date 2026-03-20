@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="me.justsid.mcservergui.CommandDialogController" prefHeight="560.0" prefWidth="820.0" style="-fx-background-color: linear-gradient(to bottom, #f7fafc, #eef2f7);">
+    <VBox spacing="12" alignment="TOP_CENTER" AnchorPane.topAnchor="16.0" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="16.0"
+          style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-color: #d8dee9; -fx-border-radius: 10;">
+        <padding>
+            <Insets top="16.0" right="16.0" bottom="16.0" left="16.0" />
+        </padding>
+
+        <Label text="Geplante Befehle" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+        <Label text="Automatisiere Server-Befehle nach Zeit oder Spieleranzahl" style="-fx-text-fill: #4a5568;" />
+
+        <Separator prefWidth="780.0" />
+
+        <HBox spacing="10" alignment="CENTER_LEFT" prefWidth="780.0">
+            <Label text="Befehl:" minWidth="90.0" />
+            <TextField fx:id="commandField" promptText="z.B. say Willkommen auf dem Server!" HBox.hgrow="ALWAYS" />
+        </HBox>
+
+        <HBox spacing="10" alignment="CENTER_LEFT" prefWidth="780.0">
+            <Label text="Auslöser:" minWidth="90.0" />
+            <ComboBox fx:id="triggerTypeComboBox" onAction="#onTriggerTypeChanged" prefWidth="210.0" />
+            <Label fx:id="conditionLabel" text="Spieleranzahl:" />
+            <TextField fx:id="conditionField" prefWidth="110" />
+            <TextField fx:id="timeField" prefWidth="110" visible="false" promptText="HH:mm" />
+            <CheckBox fx:id="repeatCheckbox" text="Wiederholen" />
+        </HBox>
+
+        <HBox spacing="10" alignment="CENTER" prefWidth="780.0">
+            <Button text="Hinzufügen" onAction="#onAddClick" prefWidth="130.0" />
+            <Button text="Aktualisieren" onAction="#onUpdateClick" prefWidth="130.0" />
+            <Button text="Löschen" onAction="#onDeleteClick" prefWidth="130.0" />
+        </HBox>
+
+        <Separator prefWidth="780.0" />
+
+        <HBox alignment="CENTER_LEFT" prefWidth="780.0">
+            <Label text="Befehlsliste:" style="-fx-font-size: 14px; -fx-font-weight: bold;" />
+        </HBox>
+        <ListView fx:id="commandListView" prefWidth="780.0" VBox.vgrow="ALWAYS" />
+
+        <HBox spacing="10" alignment="CENTER_RIGHT" prefWidth="780.0">
+            <Button text="Schließen" onAction="#onCloseClick" prefWidth="130.0" />
+        </HBox>
+    </VBox>
+</AnchorPane>

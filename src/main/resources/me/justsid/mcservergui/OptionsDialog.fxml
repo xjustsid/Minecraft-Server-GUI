@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="me.justsid.mcservergui.OptionsDialogController" prefHeight="700.0" prefWidth="760.0">
+    <VBox spacing="10" alignment="TOP_CENTER" layoutX="20.0" layoutY="20.0" AnchorPane.topAnchor="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+        <Label text="Optionen" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+        <Label text="System, Performance und Backup-Verwaltung" style="-fx-text-fill: #4a5568;" />
+
+        <GridPane hgap="10" vgap="10">
+            <Label text="Java Path:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+            <TextField fx:id="javaPathField" text="java" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+            <Label text="Server Jar:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+            <TextField fx:id="serverJarField" text="server.jar" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+            <Label text="Min Memory:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+            <TextField fx:id="minMemoryField" text="2G" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+            <Label text="Max Memory:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+            <TextField fx:id="maxMemoryField" text="4G" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+            <Label text="Backup Folder:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+            <TextField fx:id="backupFolderField" text="./backups" promptText="Backup-Ordner, Standard: ./backups" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+
+            <Label text="Restart Times:" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+            <TextField fx:id="restartTimesField" text="00:00,06:00,12:00,18:00" promptText="Zeiten für Neustarts, z.B. 00:00,06:00" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+
+            <Label text="Backup Modus:" GridPane.columnIndex="0" GridPane.rowIndex="6" />
+            <ComboBox fx:id="backupModeComboBox" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+
+            <CheckBox fx:id="autoSaveCheckbox" text="Auto Save" selected="true" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <CheckBox fx:id="autoRestartCheckbox" text="Auto Restart" selected="false" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            <CheckBox fx:id="keepAliveCheckbox" text="Keep Alive Server" selected="true" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+            <CheckBox fx:id="rollbackCheckbox" text="Rollback" selected="false" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+        </GridPane>
+
+        <Separator prefWidth="720.0" />
+
+        <Label text="Backup &amp; Restore" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+
+        <GridPane hgap="10" vgap="10">
+            <Label text="Retention Count:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+            <TextField fx:id="backupRetentionCountField" text="20" promptText="z.B. 20" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+            <Label text="Retention Days:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+            <TextField fx:id="backupRetentionDaysField" text="30" promptText="optional, z.B. 30" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        </GridPane>
+
+        <ListView fx:id="backupsListView" prefHeight="170.0" prefWidth="720.0" />
+
+        <HBox spacing="10" alignment="CENTER">
+            <Button text="Backup jetzt erstellen" />
+            <Button text="Restore selected" />
+            <Button text="Export selected" />
+            <Button text="Delete selected" />
+        </HBox>
+
+        <HBox spacing="10" alignment="CENTER">
+            <Button text="Backup-Ordner öffnen" />
+            <Button text="Refresh Liste" />
+        </HBox>
+
+        <HBox spacing="10" alignment="CENTER">
+            <Button text="Speichern" onAction="#onSaveClick" />
+            <Button text="Abbrechen" onAction="#onCancelClick" />
+        </HBox>
+    </VBox>
+</AnchorPane>
