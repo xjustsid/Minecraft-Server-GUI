@@ -9,11 +9,16 @@ OUT_DIR="dist"
 
 mkdir -p "$OUT_DIR"
 
+# Stage only the fat JAR so jpackage gets a clean input directory
+mkdir -p staging
+cp "$MAIN_JAR" staging/
+
 jpackage \
   --type dmg \
   --name "$APP_NAME" \
-  --input target \
+  --input staging \
   --main-jar "$(basename "$MAIN_JAR")" \
   --dest "$OUT_DIR" \
   --app-version "$VERSION" \
-  --vendor "xjustsid"
+  --vendor "xjustsid" \
+  --mac-package-identifier "me.justsid.mcservergui"

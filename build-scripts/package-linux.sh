@@ -9,11 +9,15 @@ OUT_DIR="dist"
 
 mkdir -p "$OUT_DIR"
 
+# Stage only the fat JAR so jpackage gets a clean input directory
+mkdir -p staging
+cp "$MAIN_JAR" staging/
+
 # Try deb first (Debian/Ubuntu), then rpm (Fedora/RHEL).
 if jpackage \
   --type deb \
   --name "$APP_NAME" \
-  --input target \
+  --input staging \
   --main-jar "$(basename "$MAIN_JAR")" \
   --dest "$OUT_DIR" \
   --app-version "$VERSION" \
@@ -24,7 +28,7 @@ else
   jpackage \
     --type rpm \
     --name "$APP_NAME" \
-    --input target \
+    --input staging \
     --main-jar "$(basename "$MAIN_JAR")" \
     --dest "$OUT_DIR" \
     --app-version "$VERSION" \

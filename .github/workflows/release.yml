@@ -1,4 +1,4 @@
-name: Release Build
+﻿name: Release Build
 
 on:
   push:
@@ -70,6 +70,13 @@ jobs:
         run: |
           chmod +x mvnw
           ./mvnw -B -Djavafx.platform=${{ matrix.javafx_platform }} clean package
+
+      - name: Install WiX Toolset (Windows only)
+        if: matrix.os == 'windows-latest'
+        shell: powershell
+        run: |
+          choco install wixtoolset -y
+          echo "C:\Program Files (x86)\WiX Toolset v3.11\bin" >> $env:GITHUB_PATH
 
       - name: Make script executable
         shell: bash
