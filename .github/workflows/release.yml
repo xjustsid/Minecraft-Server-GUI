@@ -24,7 +24,9 @@ jobs:
           cache: maven
 
       - name: Build with Maven (fat JAR)
-        run: ./mvnw -B clean package
+        run: |
+          chmod +x mvnw
+          ./mvnw -B clean package
 
       - name: Upload JAR artifact
         uses: actions/upload-artifact@v4
@@ -65,7 +67,9 @@ jobs:
           cache: maven
 
       - name: Build with Maven (fat JAR)
-        run: ./mvnw -B -Djavafx.platform=${{ matrix.javafx_platform }} clean package
+        run: |
+          chmod +x mvnw
+          ./mvnw -B -Djavafx.platform=${{ matrix.javafx_platform }} clean package
 
       - name: Make script executable
         shell: bash
