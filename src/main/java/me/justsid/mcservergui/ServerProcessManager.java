@@ -14,7 +14,11 @@ import java.nio.file.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Consumer;
 
@@ -34,6 +38,10 @@ public class ServerProcessManager {
     private Consumer<Integer> playerCountConsumer;
     private Consumer<String> logLineConsumer;
     private int currentPlayerCount = 0;
+    private final AtomicBoolean intentionalStop = new AtomicBoolean(false);
+    private final List<Consumer<String>> consoleLineListeners = new CopyOnWriteArrayList<>();
+    private ScheduledExecutorService listCommandExecutor;
+    private ScheduledExecutorService tpsCommandExecutor;
 
     /**
      * Erstellt einen neuen ServerProcessManager.
@@ -168,6 +176,7 @@ public class ServerProcessManager {
             builder.directory(serverDirectory.toFile());
             serverProcess = builder.start();
             serverInput = new PrintWriter(serverProcess.getOutputStream(), true);
+            intentionalStop.set(false);
             currentState.set(ServerState.STARTING);
             currentPlayerCount = 0;
 
@@ -200,6 +209,7 @@ public class ServerProcessManager {
     }
 
     public boolean stopServerInternal() {
+        intentionalStop.set(true);
         if (serverProcess != null) {
             if (serverInput != null) {
                 serverInput.println("stop");
@@ -324,5 +334,68 @@ public class ServerProcessManager {
         if (logLineConsumer != null) {
             logLineConsumer.accept(text);
         }
+        for (Consumer<String> listener : consoleLineListeners) {
+            try {
+                listener.accept(text);
+            } catch (Exception e) {
+                logger.debug("Exception in console listener", e);
+            }
+        }
+    }
+
+    public void addConsoleLineListener(Consumer<String> listener) {
+        consoleLineListeners.add(listener);
+    }
+
+    public boolean wasIntentionallyStopped() {
+        return intentionalStop.get();
+    }
+
+    public void setIntentionalStop(boolean value) {
+        intentionalStop.set(value);
+    }
+
+    public void initializeTpsPolling() {
+        if (tpsCommandExecutor != null && !tpsCommandExecutor.isShutdown()) return;
+        tpsCommandExecutor = Executors.newScheduledThreadPool(1);
+        tpsCommandExecutor.scheduleAtFixedRate(() -> {
+            if (isProcessAlive()) {
+                sendCommand("tps");
+                logger.debug("'tps' Command gesendet");
+            }
+        }, 10, 30, TimeUnit.SECONDS);
+        logger.info("TPS-Polling gestartet");
+    }
+
+    public void initializePlayerListPolling() {
+        if (listCommandExecutor != null && !listCommandExecutor.isShutdown()) return;
+        listCommandExecutor = Executors.newScheduledThreadPool(1);
+        listCommandExecutor.scheduleAtFixedRate(() -> {
+            if (isProcessAlive()) {
+                sendCommand("list");
+                logger.debug("'list' Command gesendet fuer Player-Update");
+            }
+        }, 5, 15, TimeUnit.SECONDS);
+        logger.info("Player-List-Polling gestartet");
+    }
+
+    public void registerMetricsListeners(ServerMetricsManager metricsManager) {
+        addConsoleLineListener(line -> {
+            metricsManager.parseTpsFromLog(line);
+            metricsManager.parsePlayersFromLog(line);
+            metricsManager.parseRamFromLog(line);
+        });
+    }
+
+    public void shutdownPollingExecutors() {
+        if (listCommandExecutor != null) {
+            listCommandExecutor.shutdownNow();
+            listCommandExecutor = null;
+        }
+        if (tpsCommandExecutor != null) {
+            tpsCommandExecutor.shutdownNow();
+            tpsCommandExecutor = null;
+        }
+        logger.info("Polling-Executors heruntergefahren");
     }
 }

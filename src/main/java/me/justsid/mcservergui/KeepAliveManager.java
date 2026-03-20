@@ -57,6 +57,10 @@ public class KeepAliveManager {
         ServerState currentState = serverProcessManager.getCurrentState();
         
         if (currentState == ServerState.ONLINE && !serverProcessManager.isProcessAlive()) {
+            if (serverProcessManager.wasIntentionallyStopped()) {
+                logger.info("Server wurde absichtlich gestoppt – kein automatischer Neustart.");
+                return;
+            }
             logger.warn("Server-Prozess nicht mehr aktiv! Starte automatischen Neustart...");
             coordinator.startServer();
         }

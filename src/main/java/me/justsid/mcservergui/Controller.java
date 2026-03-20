@@ -21,6 +21,7 @@ import org.slf4j.LoggerFactory;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.LinkedList;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -110,6 +111,8 @@ public class Controller implements ServerOperationCoordinator.ServerStateListene
     private RollbackManager rollbackManager;
     private ScheduledCommandManager scheduledCommandManager;
     private ServerOperationCoordinator coordinator;
+    private ServerMetricsManager metricsManager;
+    private PlayerAdminManager playerAdminManager;
 
     private final ConfigManager configManager = new ConfigManager();
     private ServerProcessManager serverProcessManager;
@@ -152,6 +155,16 @@ public class Controller implements ServerOperationCoordinator.ServerStateListene
         rollbackManager = new RollbackManager(serverProcessManager, coordinator, configManager);
         scheduledCommandManager = new ScheduledCommandManager(serverProcessManager, configManager);
         scheduledCommandManager.start();
+
+        // Metrics-Manager initialisieren und verdrahten
+        metricsManager = new ServerMetricsManager();
+        serverProcessManager.registerMetricsListeners(metricsManager);
+
+        // Player-Admin-Manager
+        String serverDirStr = configManager.getServerDirectory();
+        if (serverDirStr != null && !serverDirStr.isBlank()) {
+            playerAdminManager = new PlayerAdminManager(Paths.get(serverDirStr));
+        }
 
         onStateChanged(ServerState.OFFLINE);
         updateMetricsPlaceholders();
@@ -261,6 +274,27 @@ public class Controller implements ServerOperationCoordinator.ServerStateListene
             if (uptimeLabel != null) {
                 uptimeLabel.setText("Uptime: " + formatUptime());
             }
+            // Metrics aus ServerMetricsManager
+            if (metricsManager != null && isRunningState()) {
+                if (tpsLabel != null) {
+                    double tps = metricsManager.getTPS();
+                    if (metricsManager.getTpsSource() == ServerMetricsManager.MetricsSource.LOG_PARSE) {
+                        tpsLabel.setText(String.format("TPS: %.1f", tps));
+                        tpsLabel.setStyle(tps < 15.0 ? "-fx-text-fill: #dc3545;" : "-fx-text-fill: #28a745;");
+                    } else {
+                        tpsLabel.setText("TPS: n/a");
+                        tpsLabel.setStyle("");
+                    }
+                }
+                if (ramLabel != null) {
+                    ramLabel.setText("RAM: " + metricsManager.getRAMUsageFormatted());
+                }
+                if (membersOnlineLabel != null) {
+                    membersOnlineLabel.setText("Members Online: "
+                            + metricsManager.getOnlinePlayerCount()
+                            + "/" + metricsManager.getMaxPlayers());
+                }
+            }
         });
     }
 
@@ -296,6 +330,9 @@ public class Controller implements ServerOperationCoordinator.ServerStateListene
             logger.info("Stopping server on shutdown...");
             serverProcessManager.stopServerInternal();
             serverProcessManager.waitForServerFullyStopped(30);
+        }
+        if (serverProcessManager != null) {
+            serverProcessManager.shutdownPollingExecutors();
         }
     }
 
@@ -438,6 +475,12 @@ public class Controller implements ServerOperationCoordinator.ServerStateListene
             if (serverOnlineSinceMillis < 0L) {
                 serverOnlineSinceMillis = System.currentTimeMillis();
             }
+            // Polling starten und Metriken zurücksetzen
+            if (metricsManager != null) metricsManager.reset();
+            if (serverProcessManager != null) {
+                serverProcessManager.initializeTpsPolling();
+                serverProcessManager.initializePlayerListPolling();
+            }
         } else if (state == ServerState.STARTING || state == ServerState.RESTARTING) {
             serverOnlineSinceMillis = -1L;
             if (uptimeLabel != null) {
@@ -445,6 +488,8 @@ public class Controller implements ServerOperationCoordinator.ServerStateListene
             }
         } else if (state == ServerState.OFFLINE || state == ServerState.ERROR || state == ServerState.STOPPING) {
             serverOnlineSinceMillis = -1L;
+            // Polling-Executors freigeben
+            if (serverProcessManager != null) serverProcessManager.shutdownPollingExecutors();
             updateMetricsPlaceholders();
         }
     }
@@ -502,6 +547,28 @@ public class Controller implements ServerOperationCoordinator.ServerStateListene
         appendToConsole("Server wird gestoppt und Backup wird erstellt...");
         
         coordinator.performBackup();
+    }
+
+    @FXML
+    private void onManageBansClick() {
+        logger.info("Manage Bans geklickt");
+        // Phase 5: BanListDialog wird hier geöffnet
+        Alert info = new Alert(Alert.AlertType.INFORMATION);
+        info.setTitle("Bans verwalten");
+        info.setHeaderText("Ban-Verwaltung");
+        info.setContentText("Ban-Verwaltungsdialog wird in Phase 5 implementiert.");
+        info.showAndWait();
+    }
+
+    @FXML
+    private void onManageWhitelistClick() {
+        logger.info("Manage Whitelist geklickt");
+        // Phase 5: WhitelistDialog wird hier geöffnet
+        Alert info = new Alert(Alert.AlertType.INFORMATION);
+        info.setTitle("Whitelist verwalten");
+        info.setHeaderText("Whitelist-Verwaltung");
+        info.setContentText("Whitelist-Verwaltungsdialog wird in Phase 5 implementiert.");
+        info.showAndWait();
     }
 
     @FXML
